@@ -58,15 +58,15 @@ pakwheels_clone/
 
 ### 1. Database
 
-Create the database and import the tables:
+Create the database, then import the table structure and the starter data (cities, brands and car models):
 
 ```
-CREATE DATABASE pakwheels_clone;
-```
-
-```
+mysql -u root -p -e "CREATE DATABASE pakwheels_clone"
 mysql -u root -p pakwheels_clone < database/schema.sql
+mysql -u root -p pakwheels_clone < database/seed.sql
 ```
+
+On Windows, run these in Command Prompt (PowerShell does not support the `<` redirection), or open `database/schema.sql` and `database/seed.sql` in MySQL Workbench and run them one after the other.
 
 ### 2. Backend
 
@@ -145,4 +145,4 @@ Log out and log in again to see the Admin panel.
 
 ## Author
 
-Built by Muhammad Hasan as a full-stack practice project.
+Built by Ayesha Fatima as a full-stack practice project.
