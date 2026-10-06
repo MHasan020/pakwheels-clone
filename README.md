@@ -130,11 +130,11 @@ Log out and log in again to see the Admin panel.
 
 ## Screenshots
 
-<!-- Add your screenshots to docs/screenshots and remove the comment markers around the lines below.
 ![Home page](docs/screenshots/home.png)
+
 ![Admin panel](docs/screenshots/admin.png)
+
 ![Chatbot](docs/screenshots/chatbot.png)
--->
 
 ## Notes and Limitations
 
@@ -145,4 +145,4 @@ Log out and log in again to see the Admin panel.
 
 ## Author
 
-Built by Ayesha Fatima as a full-stack practice project.
+Built by Muhammad Hasan as a full-stack practice project.
