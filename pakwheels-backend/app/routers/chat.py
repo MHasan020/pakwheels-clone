@@ -22,8 +22,10 @@ MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
 MAX_HISTORY = 10
 MAX_CHARS = 1000
-MAX_ATTEMPTS = 3
+MAX_ATTEMPTS = 2
+REQUEST_TIMEOUT = 60
 UNAVAILABLE_MESSAGE = "The chatbot is unavailable right now. Please try again."
+TIMEOUT_MESSAGE = "The chatbot is taking too long to answer. Please try again in a minute."
 
 SYSTEM_PROMPT = """You are the PakWheels Assistant, a friendly helper on PakWheels, a car marketplace website in Pakistan where people buy and sell used and new cars.
 
@@ -91,8 +93,13 @@ def chat(data: ChatRequest, current_user: User = Depends(get_current_user)):
                 API_URL,
                 headers={"x-goog-api-key": api_key, "Content-Type": "application/json"},
                 json=payload,
-                timeout=30,
+                timeout=REQUEST_TIMEOUT,
             )
+        except requests.Timeout:
+            print(f"Gemini timeout (attempt {attempt + 1} of {MAX_ATTEMPTS})")
+            if attempt < MAX_ATTEMPTS - 1:
+                continue
+            raise HTTPException(status_code=504, detail=TIMEOUT_MESSAGE)
         except requests.RequestException as e:
             print("Gemini request error:", e)
             raise HTTPException(status_code=502, detail=UNAVAILABLE_MESSAGE)
