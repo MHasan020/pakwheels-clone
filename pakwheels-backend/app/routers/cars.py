@@ -165,7 +165,7 @@ def upload_car_image(
     with open(filepath, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    image_url = f"http://127.0.0.1:8000/uploads/{filename}"
+    image_url = f"{os.getenv('BACKEND_URL', 'http://127.0.0.1:8000')}/uploads/{filename}"
     new_image = CarImage(car_id=car_id, image_url=image_url, is_primary=is_primary)
     db.add(new_image)
     db.commit()

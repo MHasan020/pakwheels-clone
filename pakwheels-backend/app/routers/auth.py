@@ -1,3 +1,4 @@
+import os
 from datetime import datetime, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -83,7 +84,8 @@ def forgot_password(data: ForgotPasswordRequest, db: Session = Depends(get_db)):
             "exp": datetime.utcnow() + timedelta(minutes=RESET_TOKEN_EXPIRE_MINUTES),
         }
         token = jwt.encode(payload, _reset_key(user), algorithm=ALGORITHM)
-        link = f"http://localhost:5173/reset-password?token={token}"
+        frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173").split(",")[0].strip()
+        link = f"{frontend_url}/reset-password?token={token}"
         # Abhi email ki jagah terminal mein print hota hai. Deployment ke waqt yahan asli email bhejenge.
         print("PASSWORD RESET LINK:", link)
     # Hamesha same jawab, taake koi andaza na laga sake ke kaunsi email registered hai

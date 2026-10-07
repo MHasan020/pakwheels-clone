@@ -1,18 +1,38 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from app.routers import auth, cars, meta, admin, messages , chat
+
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except ImportError:
+    pass
+
+from app.routers import auth, cars, meta, admin, messages, chat
 
 app = FastAPI(title="PakWheels Clone API")
 
+# FRONTEND_URL mein ek ya zyada website addresses likh sakte hain (comma se alag).
+# Aakhir mein "/" nahi lagana. Na likha ho to laptop wala address chalta hai.
+origins = [
+    origin.strip()
+    for origin in os.getenv("FRONTEND_URL", "http://localhost:5173").split(",")
+    if origin.strip()
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# Server par nayi copy mein uploads folder na ho to khud ban jaye
+os.makedirs("app/uploads", exist_ok=True)
 app.mount("/uploads", StaticFiles(directory="app/uploads"), name="uploads")
 
 app.include_router(auth.router)
