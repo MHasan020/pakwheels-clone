@@ -13,7 +13,9 @@ except ImportError:
 
 from app.routers import auth, cars, meta, admin, messages, chat
 
-app = FastAPI(title="PakWheels Clone API")
+SITE_NAME = os.getenv("SITE_NAME", "GaadiLife")
+
+app = FastAPI(title=f"{SITE_NAME} API")
 
 # FRONTEND_URL mein ek ya zyada website addresses likh sakte hain (comma se alag).
 # Aakhir mein "/" nahi lagana. Na likha ho to laptop wala address chalta hai.
@@ -45,4 +47,4 @@ app.include_router(chat.router)
 
 @app.get("/")
 def read_root():
-    return {"message": "PakWheels Clone API is running"}
+    return {"message": f"{SITE_NAME} API is running"}

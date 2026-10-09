@@ -1,6 +1,6 @@
-# PakWheels Clone - Car Marketplace
+# GaadiLife - Car Marketplace
 
-A full-stack car marketplace web app inspired by PakWheels. Sellers post car ads, admins review them, and buyers browse, save favorites and message sellers. It also has an AI chatbot that answers questions about the website and car buying.
+A full-stack car marketplace web app. Sellers post car ads, admins review them, and buyers browse, save favorites and message sellers. It also has an AI chatbot that answers questions about the website and car buying.
 
 This is a portfolio / practice project.
 

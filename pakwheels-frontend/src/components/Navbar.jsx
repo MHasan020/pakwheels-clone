@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
+import { SITE_NAME_PART1, SITE_NAME_PART2 } from "../config";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ function Navbar() {
   return (
     <nav className="bg-gradient-to-r from-blue-700 to-blue-500 text-white px-6 py-4 flex justify-between items-center flex-wrap shadow-md">
       <Link to="/" className="font-bold text-2xl tracking-tight">
-        Pak<span className="text-yellow-300">Wheels</span>
+        {SITE_NAME_PART1}<span className="text-yellow-300">{SITE_NAME_PART2}</span>
       </Link>
       <div className="space-x-5 text-sm font-medium">
         {token ? (

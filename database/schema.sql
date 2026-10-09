@@ -1,4 +1,4 @@
--- PakWheels Clone database schema (generated from the SQLAlchemy models)
+-- GaadiLife database schema (generated from the SQLAlchemy models)
 
 CREATE TABLE brands (
 	id INTEGER NOT NULL AUTO_INCREMENT, 

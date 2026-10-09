@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import api from "../services/api";
+import { SITE_NAME } from "../config";
 
 const HIDDEN_PATHS = ["/login", "/register", "/welcome", "/forgot-password", "/reset-password"];
 
 const GREETING = {
   role: "assistant",
-  content:
-    "Hi! I am the PakWheels Assistant. Ask me how to post an ad, how the website works, or for car buying tips.",
+  content: `Hi! I am the ${SITE_NAME} Assistant. Ask me how to post an ad, how the website works, or for car buying tips.`,
 };
 
 function ChatWidget() {
@@ -65,7 +65,7 @@ function ChatWidget() {
         <div className="mb-3 w-80 sm:w-96 h-96 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200">
           <div className="bg-gradient-to-r from-blue-700 to-blue-500 text-white px-4 py-3 flex justify-between items-center">
             <div>
-              <p className="font-semibold">PakWheels Assistant</p>
+              <p className="font-semibold">{SITE_NAME} Assistant</p>
               <p className="text-xs text-blue-100">Ask me about the website or buying a car</p>
             </div>
             <button

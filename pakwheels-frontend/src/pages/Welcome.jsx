@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import { SITE_NAME_PART1, SITE_NAME_PART2 } from "../config";
 
 function Welcome() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-800 via-blue-600 to-cyan-500 flex flex-col items-center justify-center px-6">
       <h1 className="text-4xl font-bold text-white mb-2">
-        Pak<span className="text-yellow-300">Wheels</span>
+        {SITE_NAME_PART1}<span className="text-yellow-300">{SITE_NAME_PART2}</span>
       </h1>
       <p className="text-blue-100 mb-10 text-center">
         Buy and sell cars across Pakistan. Choose how you want to continue.

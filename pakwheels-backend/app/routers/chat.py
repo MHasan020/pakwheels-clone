@@ -18,6 +18,7 @@ except ImportError:
 
 router = APIRouter(prefix="/chat", tags=["Chat"])
 
+SITE_NAME = os.getenv("SITE_NAME", "GaadiLife")
 MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
 MAX_HISTORY = 10
@@ -27,7 +28,7 @@ REQUEST_TIMEOUT = 60
 UNAVAILABLE_MESSAGE = "The chatbot is unavailable right now. Please try again."
 TIMEOUT_MESSAGE = "The chatbot is taking too long to answer. Please try again in a minute."
 
-SYSTEM_PROMPT = """You are the PakWheels Assistant, a friendly helper on PakWheels, a car marketplace website in Pakistan where people buy and sell used and new cars.
+SYSTEM_PROMPT = f"""You are the {SITE_NAME} Assistant, a friendly helper on {SITE_NAME}, a car marketplace website in Pakistan where people buy and sell used and new cars.
 
 How the website works:
 - Anyone can browse approved ads on the home page and use search and filters (brand, city, price).
@@ -40,7 +41,7 @@ Rules:
 - Reply in the same language and style the user writes in (English, Urdu or Roman Urdu).
 - Write plain text only. Do not use markdown symbols such as asterisks, hashes or backticks. For steps, write 1., 2., 3. on separate lines.
 - Keep answers short and clear.
-- Only help with PakWheels and topics about buying, selling, owning or maintaining cars. If asked about anything else, politely say you can only help with car and PakWheels questions.
+- Only help with {SITE_NAME} and topics about buying, selling, owning or maintaining cars. If asked about anything else, politely say you can only help with car and {SITE_NAME} questions.
 - You may give general car buying and selling advice (what to check in a used car, paperwork, test drives, fair pricing tips). Say clearly when something is only general advice.
 - You cannot see or change anyone's account, ads, messages or payments, and you cannot search the listings. Never invent car listings, prices or seller details. If a question needs a person, tell the user to contact the website admin.
 - Do not give legal or financial guarantees. For transfer or legal paperwork, suggest checking with the relevant authority or a professional."""

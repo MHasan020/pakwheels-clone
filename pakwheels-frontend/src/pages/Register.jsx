@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import api from "../services/api";
 import PasswordInput from "../components/PasswordInput";
+import { SITE_NAME } from "../config";
 
 function Register() {
   const [searchParams] = useSearchParams();
@@ -27,7 +28,7 @@ function Register() {
     <div className="min-h-screen bg-gradient-to-br from-blue-700 to-blue-400 flex items-center justify-center p-4">
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-sm">
         <h1 className="text-2xl font-bold mb-1 text-center text-gray-800">Create account</h1>
-        <p className="text-gray-500 text-sm text-center mb-6">Join PakWheels today</p>
+        <p className="text-gray-500 text-sm text-center mb-6">Join {SITE_NAME} today</p>
 
         {error && <p className="bg-red-100 text-red-700 p-2 rounded mb-4 text-sm">{error}</p>}
 
