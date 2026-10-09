@@ -129,7 +129,6 @@ Log out and log in again to see the Admin panel.
 | Meta | `GET /cities`, `GET /brands`, `GET /brands/{id}/models` |
 
 ## Screenshots
-
 ![Home page](docs/screenshots/home.png)
 
 ![Admin panel](docs/screenshots/admin.png)
